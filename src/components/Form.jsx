@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Radio from "./Radio";
 import Checkbox from "./Checkbox";
 import { useState } from "react";
 
-function Form() {
+function Form({addAnswer}) {
     const [selectedRadio, setSelectedRadio] = useState(""); 
     const [selectedCheck, setSelectedCheck] = useState(""); 
     const [review, setReview] = useState(""); 
@@ -16,6 +17,23 @@ function Form() {
     console.log("Info about Rubber Duck:", review);
     console.log("Username:", username);
     console.log("Email:", email);
+
+    const newAnswer = {
+      username,
+      colour: selectedRadio,
+      timeSpent: selectedCheck,
+      review,
+      email
+    };
+
+    addAnswer(newAnswer); // <-- legg til svaret i Survey
+    console.log("Submitted:", newAnswer);
+
+    setSelectedRadio(null);         
+    setSelectedCheck([]);         
+    setReview("");                   
+    setUsername("");                
+    setEmail("");    
 
   };
     return ( 
@@ -43,8 +61,8 @@ function Form() {
             type="text"
             name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)} /></label
-        ><label>
+            onChange={(e) => setUsername(e.target.value)} /></label>
+        <label>
             Leave us your email pretty please??<input
             type="email"
             name="email"

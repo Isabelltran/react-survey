@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import AnswersItem from "./AnswersItem";
 
 export default function AnswersList(props) {
